@@ -1,0 +1,9 @@
+package front;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public interface ICommand {
+	//디폴트 인터페이스 안에서 일반 메소드를 쓰기 위해 명시해줌
+	public String execute(HttpServletRequest request, HttpServletResponse response);
+}

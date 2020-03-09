@@ -1,0 +1,32 @@
+package front;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/FrontController")
+public class FrontController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String requestURI = request.getRequestURI();
+		System.out.println(requestURI);
+		String contextPath = request.getContextPath();
+		System.out.println(contextPath);
+		String resultURL = requestURI.substring(contextPath.length()+1);
+		System.out.println(resultURL);
+		request.setCharacterEncoding("EUC-KR");
+		
+		String moveURL = null; ICommand iCommand = null;
+		
+		if(resultURL.equals("LoginService.do")) {iCommand = new LoginCommand();}
+		
+		moveURL = iCommand.execute(request, response);
+		response.sendRedirect(moveURL);
+	}
+
+}

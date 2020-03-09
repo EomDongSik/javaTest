@@ -1,0 +1,19 @@
+package command;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import front.ICommand;
+
+public class LoginCommand implements ICommand {
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		String moveURL = null;
+		String email = request.getParameter("email");
+		
+		
+		return moveURL;
+	}
+
+}

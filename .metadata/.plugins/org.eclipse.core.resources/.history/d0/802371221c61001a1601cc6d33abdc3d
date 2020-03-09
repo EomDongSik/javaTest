@@ -1,0 +1,41 @@
+package front;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import command.LoginCommand;
+
+@WebServlet("*.do")
+public class FrontController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	private HashMap<String, ICommand> map = new HashMap<String, ICommand>();
+	
+	public void inputMap() {
+		
+	}
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String requestURI = request.getRequestURI();
+	
+		String contextPath = request.getContextPath();
+	
+		String resultURL = requestURI.substring(contextPath.length()+1);
+	
+		request.setCharacterEncoding("EUC-KR");
+		
+		String moveURL = null; ICommand iCommand = null;
+		
+		if(resultURL.equals("loginService.do")) {iCommand = new LoginCommand();}
+		
+		moveURL = iCommand.execute(request, response);
+		response.sendRedirect(moveURL);
+	}
+
+}

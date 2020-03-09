@@ -1,0 +1,24 @@
+package command;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import front.ICommand;
+import model.MemberDTO;
+
+public class LoginCommand implements ICommand {
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		String moveURL = null;
+		String email = request.getParameter("email");
+		String pw = request.getParameter("pw");
+		
+		MemberDTO dto = new MemberDTO(email,pw);
+		
+		
+		
+		return moveURL;
+	}
+
+}
